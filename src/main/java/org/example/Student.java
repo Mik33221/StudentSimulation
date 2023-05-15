@@ -1,6 +1,6 @@
 package org.example;
 
-public class Student {
+public class Student extends Osoba {
     public Student(){
         health = 100;
         luck = 0;
