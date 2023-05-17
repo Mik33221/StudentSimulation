@@ -1,36 +1,32 @@
 package org.example;
 
+import java.util.HashMap;
+
 public class Student {
     public Student(){
         health = 100;
-        luck = 0;
-        perception = 0;
-        System.out.println("Empty created");
+        name = "blank";
+        surName = "blank";
+        System.out.println("Blank created");
     }
-    public Student(int health, int luck, int perception){
+    public Student(String name, String surName, int health){
         this.health = health;
-        this.luck = luck;
-        this.perception = perception;
-        System.out.println("Student: health - "+health+" luck - "+luck+" perception - "+perception);
+        this.name = name;
+        this.surName = surName;
+        System.out.println("Student: "+name+" "+surName+ " health: "+ health);
     }
+    private String name;
+    private String surName;
     private int health;
-    private int luck;
-    private int perception;
-
+    private HashMap<String, Integer> skills = new HashMap<String, Integer>();
     public int getHealth() {
         return health;
     }
-
-    public int getLuck() {
-        return luck;
-    }
-
-    public int getPerception() {
-        return perception;
-    }
-
     public void setHealth(int health) {
         this.health = health;
+    }
+    public HashMap getSkills(){
+        return skills;
     }
 
 }

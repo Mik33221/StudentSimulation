@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         StudentGenerator Liceum = new StudentGenerator();
         List<Student> studentList = Liceum.CreateRandom(3);
-        System.out.println(studentList.toString());
-        System.out.println(studentList.get(1).getHealth());
+        //System.out.println(studentList.toString());
+        //System.out.println(studentList.get(1).getHealth());
     }
 }
