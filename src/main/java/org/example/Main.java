@@ -37,6 +37,6 @@ public class Main {
             }
         }
 
-        System.out.println(studentList.toString());
+        System.out.println(studentList);
     }
 }
