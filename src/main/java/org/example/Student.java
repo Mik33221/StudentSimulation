@@ -33,11 +33,4 @@ public class Student {
         this.health = health;
     }
 
-    public void setLuck(int luck) {
-        this.luck = luck;
-    }
-
-    public void setPerception(int perception) {
-        this.perception = perception;
-    }
 }
