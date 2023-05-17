@@ -2,8 +2,9 @@ package org.example;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class Student extends Osoba {
+public class Student extends Person {
 
     public Student(){
         health = 100;

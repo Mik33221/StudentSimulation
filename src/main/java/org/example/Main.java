@@ -1,12 +1,13 @@
 package org.example;
 
-import java.util.List;
-import java.util.Random;
+import com.sun.source.tree.Tree;
+
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         StudentGenerator liceum = new StudentGenerator();
-        List<Student> studentList = liceum.CreateRandom(3);
+        List<Student> studentList = liceum.CreateRandom(500);
 
         Party party = new Party();
         Study study = new Study();
@@ -17,7 +18,7 @@ public class Main {
 
         int deepDecisionMakingAlgorithm;
 
-        int days = 7;
+        int days = 50;
         for (int i = 0; i < days; i++) {
             for(Student student:studentList){
                 deepDecisionMakingAlgorithm = random.nextInt(3);
@@ -37,6 +38,19 @@ public class Main {
             }
         }
 
-        System.out.println(studentList);
+        TreeMap<Integer, Integer> display = new TreeMap<>();
+        for(Student student:studentList){
+            if(student.getSkills().containsKey("Math")) {
+                display.merge((Integer) student.getSkills().get("Math"), 1, (oldValue, newValue) -> (Integer) oldValue + (Integer) newValue);
+            }
+        }
+        for(Map.Entry<Integer, Integer> entry : display.entrySet()){
+            System.out.println();
+            System.out.print(entry.getKey());
+            for (int i = 0; i < entry.getValue(); i++) {
+                System.out.print("|");
+            }
+        }
+
     }
 }
