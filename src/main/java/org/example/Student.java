@@ -1,8 +1,10 @@
 package org.example;
 
+
 import java.util.HashMap;
 
-public class Student {
+public class Student extends Osoba {
+
     public Student(){
         health = 100;
         name = "blank";
