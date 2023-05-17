@@ -23,14 +23,11 @@ public class Student {
         return health;
     }
     public void setHealth(int health) {
-        this.health =+ health;
+        this.health = this.health + health;
         if (this.health < 0) this.health = 0;
     }
     public HashMap getSkills(){
         return skills;
-    }
-    public void ModifyThing(){
-
     }
 
     @Override

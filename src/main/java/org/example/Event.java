@@ -1,5 +1,5 @@
 package org.example;
 
 public interface Event {
-    void ModifyStudent();
+    void ModifyStudent(Student student);
 }
