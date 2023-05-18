@@ -7,7 +7,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         StudentGenerator liceum = new StudentGenerator();
-        List<Student> studentList = liceum.CreateRandom(500);
+        List<Student> studentList = liceum.CreateRandom(20);
 
         Party party = new Party();
         Study study = new Study();
@@ -18,7 +18,7 @@ public class Main {
 
         int deepDecisionMakingAlgorithm;
 
-        int days = 50;
+        int days = 365;
         for (int i = 0; i < days; i++) {
             for(Student student:studentList){
                 deepDecisionMakingAlgorithm = random.nextInt(3);
@@ -37,20 +37,6 @@ public class Main {
                 }
             }
         }
-
-        TreeMap<Integer, Integer> display = new TreeMap<>();
-        for(Student student:studentList){
-            if(student.getSkills().containsKey("Math")) {
-                display.merge((Integer) student.getSkills().get("Math"), 1, (oldValue, newValue) -> (Integer) oldValue + (Integer) newValue);
-            }
-        }
-        for(Map.Entry<Integer, Integer> entry : display.entrySet()){
-            System.out.println();
-            System.out.print(entry.getKey());
-            for (int i = 0; i < entry.getValue(); i++) {
-                System.out.print("|");
-            }
-        }
-
+        System.out.println(studentList.toString());
     }
 }
