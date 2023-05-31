@@ -2,7 +2,7 @@ package org.example;
 
 public class Exam implements Event{
     @Override
-    public void ModifyStudent(Student student) {
+    public void modifyStudent(Student student) {
 
     }
 }
