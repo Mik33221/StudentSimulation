@@ -5,6 +5,7 @@ import java.util.Map;
 public class Student extends Person{
     final int indexNumber;
     private Map<String, Integer> statistics;
+    private int initialSocializationDesire;
     /*private int mathSkills;
     private int physicalSkills;
     private int computerSkills;
@@ -19,6 +20,7 @@ public class Student extends Person{
         statistics.put("PhysicalSkills", physicalSkills);
         statistics.put("ComputerSkills", computerSkills);
         statistics.put("SocializationDesire", socializationDesire);
+        initialSocializationDesire = socializationDesire;
         /*this.mathSkills = mathSkills;
         this.physicalSkills = physicalSkills;
         this.computerSkills = computerSkills;
@@ -34,6 +36,16 @@ public class Student extends Person{
         return statistics.getOrDefault(name, 0);
     }
 
+    public void updateSocializationDesire() {
+        int socializationDesire = getStatistic("SocializationDesire");
+        socializationDesire += initialSocializationDesire;
+        setStatistic("SocializationDesire", socializationDesire);
+    }
+
+    public void attendParty() {
+        setStatistic("SocializationDesire", initialSocializationDesire);
+            health/=2;
+    }
 
 
     @Override
