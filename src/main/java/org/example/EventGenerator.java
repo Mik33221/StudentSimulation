@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class EventGenerator {
     // kompozycja - Event jest częscią składową klasy EventGenerator
-    private final static List<Event> events = Arrays.asList(new StudyMath(), new StudyPhysics(), new StudyIT(), new Party(), new Work());
+    private final static List<Event> events = Arrays.asList(new StudyMath(), new StudyPhysics(), new StudyIT(), new Party(), new Work(),new Rest());
 
     public static Event generateRandomEvent(Student student) {  // losuje akcję studenta na podstawie jego potrzeb
         int[] pred = student.getAllPredispositions();
@@ -27,7 +27,7 @@ public class EventGenerator {
             choice = 3;
             }
         }else if (student.getPredisposition("Wealth")<=50 && student.getHealth()>20) choice =4;
-
+            else choice=5;
 
         return events.get(choice);
     }
