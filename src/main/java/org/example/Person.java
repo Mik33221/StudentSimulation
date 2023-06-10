@@ -14,6 +14,9 @@ public class Person {
     }
 
     public Person(String name, String surName, int health) {
+        this.skills.put("Math",0);
+        this.skills.put("Physics",0);
+        this.skills.put("IT",0);
         this.health = health;
         this.name = name;
         this.surName = surName;
@@ -45,7 +48,12 @@ public class Person {
         }
     }
     public void increaseSkill(String skill){
-        this.skills.merge(skill, 1, (oldValue, newValue) -> oldValue + newValue);
+        if (this.skills.get(skill)>30){
+            this.skills.merge(skill, 1, (oldValue, newValue) -> oldValue + newValue);
+        } else{
+            this.skills.merge(skill, 2, (oldValue, newValue) -> oldValue + newValue);
+        }
+
     }
 
     @Override
