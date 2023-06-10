@@ -15,12 +15,12 @@ public class StudentGenerator {
             pred.put("Math", random.nextInt(80) + 1);
             pred.put("Physics", random.nextInt(40) + 1);
             pred.put("IT", random.nextInt(30) + 1);
-            pred.put("SocializationDesire", random.nextInt(11) + 1);
+            pred.put("Socialization", random.nextInt(11) + 1);
         } else {            //Student jako humanista
             pred.put("Math", random.nextInt(30) + 1);
             pred.put("Physics", random.nextInt(50) + 1);
             pred.put("IT", random.nextInt(20) + 1);
-            pred.put("SocializationDesire", random.nextInt(21) + 1);
+            pred.put("Socialization", random.nextInt(21) + 1);
         }
         return pred;
     }

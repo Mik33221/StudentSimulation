@@ -8,7 +8,7 @@ public class EventGenerator {
     // kompozycja - Event jest częscią składową klasy EventGenerator
     private final static List<Event> events = Arrays.asList(new Work(), new Party(), new StudyIT(), new StudyMath(), new StudyPhysics());
 
-    public static Event generateRandomEvent() {
+    public static Event generateRandomEvent(Student student) {
         return events.get(new Random().nextInt(events.size()));
     }
 }

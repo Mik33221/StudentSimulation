@@ -1,6 +1,7 @@
 package org.example;
 
 
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Student extends Person {
@@ -15,6 +16,15 @@ public class Student extends Person {
     }
     public Integer getPredisposition(String pred){
         return this.predispositions.get(pred);
+    }
+    public Integer[] getAllPredispositions(){
+        Integer[] tab = {
+                this.predispositions.get("Math"),
+                this.predispositions.get("Physics"),
+                this.predispositions.get("It"),
+                this.predispositions.get("Socialization")
+        };
+        return tab;
     }
     @Override
     public String toString() {
