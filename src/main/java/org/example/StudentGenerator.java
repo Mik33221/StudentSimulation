@@ -10,12 +10,13 @@ public class StudentGenerator {
     static HashMap<String, Integer> RollPredispositions(boolean type) {
         Random random = new Random();
         HashMap<String, Integer> pred = new HashMap<>();
+
         if (type == true) { //Student jako ścisłowiec
             pred.put("Math", random.nextInt(80) + 1);
             pred.put("Physics", random.nextInt(40) + 1);
             pred.put("IT", random.nextInt(30) + 1);
             pred.put("SocializationDesire", random.nextInt(11) + 1);
-        } else {          //Student jako humanista
+        } else {            //Student jako humanista
             pred.put("Math", random.nextInt(30) + 1);
             pred.put("Physics", random.nextInt(50) + 1);
             pred.put("IT", random.nextInt(20) + 1);
