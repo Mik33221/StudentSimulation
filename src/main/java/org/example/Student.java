@@ -16,6 +16,10 @@ public class Student extends Person {
         this.state = StudentState.ACTIVE;
         this.predispositions = (HashMap<String, Integer>) predispositions.clone();
     }
+
+    public void setPredisposition(String pred, Integer value) {
+        this.predispositions.put(pred, value);
+    }
     public Integer getPredisposition(String pred){
         return this.predispositions.get(pred);
     }
@@ -24,7 +28,8 @@ public class Student extends Person {
                 this.predispositions.get("Math"),
                 this.predispositions.get("Physics"),
                 this.predispositions.get("IT"),
-                this.predispositions.get("Socialization")
+                this.predispositions.get("Socialization"),
+                this.predispositions.get("Wealth")
         };
         return tab;
     }
@@ -33,6 +38,8 @@ public class Student extends Person {
         int sum = IntStream.of(tab).sum();
         return sum;
     }
+
+
     @Override
     public String toString() {
         return "Student{" +

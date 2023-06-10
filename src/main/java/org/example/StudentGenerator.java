@@ -22,6 +22,7 @@ public class StudentGenerator {
             pred.put("IT", random.nextInt(20) + 1);
             pred.put("Socialization", random.nextInt(21) + 1);
         }
+        pred.put("Wealth", random.nextInt(1001)+1);
         return pred;
     }
 
