@@ -3,6 +3,8 @@ package org.example;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.IntStream;
 
 public class Student extends Person {
     final int indexNumber;
@@ -17,14 +19,19 @@ public class Student extends Person {
     public Integer getPredisposition(String pred){
         return this.predispositions.get(pred);
     }
-    public Integer[] getAllPredispositions(){
-        Integer[] tab = {
+    public int[] getAllPredispositions(){
+        int[] tab = {
                 this.predispositions.get("Math"),
                 this.predispositions.get("Physics"),
-                this.predispositions.get("It"),
+                this.predispositions.get("IT"),
                 this.predispositions.get("Socialization")
         };
         return tab;
+    }
+    public int getSumPredispositions(){
+        int[] tab = getAllPredispositions();
+        int sum = IntStream.of(tab).sum();
+        return sum;
     }
     @Override
     public String toString() {
@@ -34,7 +41,17 @@ public class Student extends Person {
                 ", health=" + health +
                 ", indexNumber=" + indexNumber +
                 ", state=" + state +
-                ", Skills=[" + getSkillsAsString() + "]" +
+                ", \nSkills=[" + getSkillsAsString() + "]" +
+                ", \nPreds=[" + getPredispositionsAsString() + "]" +
                 '}';
+    }
+    public String getPredispositionsAsString() {
+        StringBuilder stringBuffer = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : this.predispositions.entrySet()) {
+            stringBuffer
+                    .append("[Pred=").append(entry.getKey())
+                    .append(", value=").append(entry.getValue()).append("],");
+        }
+        return stringBuffer.toString();
     }
 }
