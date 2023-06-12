@@ -1,6 +1,8 @@
-package org.example;
+package org.example.events;
 
-public class Work implements Event{
+import org.example.Student;
+
+public class Work implements Event {
     @Override
     public void modifyStudent(Student student) {
         student.decreaseHealth(10);

@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.events.EventGenerator;
+
 import java.util.List;
 
 public class Semester {

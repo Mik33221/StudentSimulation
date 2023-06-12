@@ -1,6 +1,8 @@
-package org.example;
+package org.example.events;
 
-public class StudyPhysics extends Study{
+import org.example.Student;
+
+public class StudyPhysics extends Study {
     @Override
     public void modifyStudent(Student student) {
         student.increaseSkill("Physics");
