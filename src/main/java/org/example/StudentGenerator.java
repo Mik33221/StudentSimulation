@@ -15,14 +15,13 @@ public class StudentGenerator {
             pred.put("Math", random.nextInt(80) + 1);
             pred.put("Physics", random.nextInt(40) + 1);
             pred.put("IT", random.nextInt(30) + 1);
-            pred.put("Socialization", random.nextInt(11) + 1);
+            pred.put("InitialSocialization", random.nextInt(11) + 1);
         } else {            //Student jako humanista
             pred.put("Math", random.nextInt(30) + 1);
             pred.put("Physics", random.nextInt(50) + 1);
             pred.put("IT", random.nextInt(20) + 1);
-            pred.put("Socialization", random.nextInt(21) + 1);
+            pred.put("InitialSocialization", random.nextInt(21) + 1);
         }
-        pred.put("Wealth", random.nextInt(1001)+1);
         return pred;
     }
 
@@ -36,6 +35,7 @@ public class StudentGenerator {
                             names.get(random.nextInt(names.size())),
                             surNames.get(random.nextInt(surNames.size())),
                             random.nextInt(80, 100),
+                            random.nextInt(10,2000),
                             indexNumber++,
                             RollPredispositions(random.nextBoolean())
                     );

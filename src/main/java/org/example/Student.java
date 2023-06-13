@@ -8,18 +8,16 @@ import java.util.stream.IntStream;
 public class Student extends Person {
     final int indexNumber;
     final StudentState state;
-    private final HashMap<String, Integer> predispositions; // tablica na wszystkie wartości które mają wpływać na decyzje studenta
-    public Student(String name, String surName, int health, int indexNumber, HashMap<String, Integer> predispositions) {
-        super(name, surName, health);
+    private final HashMap<String, Integer> predispositions; // tablica na wartości które mają wpływać na decyzje studentan, nie modyfikowane
+    public Student(String name, String surName, int health, int money, int indexNumber, HashMap<String, Integer> predispositions) {
+        super(name, surName, health, money);
         this.indexNumber = indexNumber;
         this.state = StudentState.ACTIVE;
         this.predispositions = (HashMap<String, Integer>) predispositions.clone();
+        this.social = this.predispositions.get("InitialSocialization");
     }
 
-    public void setPredisposition(String pred, Integer value) {
-        this.predispositions.put(pred, value);
-    }
-    public Integer getPredisposition(String pred){
+    public int getPredisposition(String pred){
         return this.predispositions.get(pred);
     }
     public int[] getAllPredispositions(){
@@ -27,8 +25,7 @@ public class Student extends Person {
                 this.predispositions.get("Math"),
                 this.predispositions.get("Physics"),
                 this.predispositions.get("IT"),
-                this.predispositions.get("Socialization"),
-                this.predispositions.get("Wealth")
+                social
         };
         return tab;
     }
@@ -37,7 +34,9 @@ public class Student extends Person {
         int sum = IntStream.of(tab).sum();
         return sum;
     }
-
+    public void resetSocial(){
+        this.social = this.predispositions.get("InitialSocialization");
+    }
 
     @Override
     public String toString() {
@@ -45,6 +44,8 @@ public class Student extends Person {
                 "name='" + name + '\'' +
                 ", surName='" + surName + '\'' +
                 ", health=" + health +
+                ", money=" + money +
+                ", social=" + social +
                 ", indexNumber=" + indexNumber +
                 ", state=" + state +
                 ", \nSkills=[" + getSkillsAsString() + "]" +

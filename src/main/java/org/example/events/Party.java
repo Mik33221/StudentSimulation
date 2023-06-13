@@ -2,11 +2,12 @@ package org.example.events;
 
 import org.example.Student;
 
-public class Party implements Event {
+import java.util.Random;
+
+public class Party implements Event {   //przywraca chęć na imprezę do początkowej wartości, zabiera częśc pieniędzy
     @Override
     public void modifyStudent(Student student) {
-        // student.increaseHealth(10);
-        int money = student.getPredisposition("Wealth") / 2;
-        student.setPredisposition("Wealth", money);
+        student.resetSocial();
+        student.decreaseMoney(student.getMoney()/new Random().nextInt(10,60));
     }
 }

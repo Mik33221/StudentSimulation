@@ -16,19 +16,19 @@ public class EventGenerator {
         int choice = 0;
         int i = 0;
 
-        if (student.getPredisposition("Wealth") > 50 && student.getHealth() > 20) {
-
-            if (random < (i += pred[0])) {
-                choice = 0;
-            } else if (random < (i += pred[1])) {
-                choice = 1;
-            } else if (random < (i += pred[2])) {
-                choice = 2;
-            } else if (random < (i += pred[3])) {
-                choice = 3;
-            }
-        } else if (student.getPredisposition("Wealth") <= 50 && student.getHealth() > 20) choice = 4;
-        else choice = 5;
+        if (student.getHealth()<20) {           // przy zbyt małym życiu odpoczywa
+            choice = 5;
+        } else if (student.getMoney()<40) {     // przy zbyt małej ilości pieniędzy pracuje
+            choice = 4;
+        } else if (random < (i += pred[0])) {   // losuje akcje na podstawie sumy predyspozycji i chęci na imprezę (social)
+            choice = 0;                         // matematyka
+        } else if (random < (i += pred[1])) {
+            choice = 1;                         // fizyka
+        } else if (random < (i += pred[2])) {
+            choice = 2;                         // informatyka
+        } else if (random < (i += pred[3])) {
+            choice = 3;                         // impreza
+        }
 
         return events.get(choice);
     }
