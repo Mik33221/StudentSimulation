@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.events.EventGenerator;
+
 import java.util.List;
 
 public class Semester {
@@ -17,7 +19,7 @@ public class Semester {
         System.out.println("\n\nStudents' live going on...");
         for (int i = 0; i < this.days; i++) {
             for (Student student : this.studentList) {
-                EventGenerator.generateRandomEvent().modifyStudent(student);
+                EventGenerator.generateRandomEvent(student).modifyStudent(student);
             }
         }
 
