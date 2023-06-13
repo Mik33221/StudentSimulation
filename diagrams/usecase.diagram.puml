@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+User -> (Define number of Students \n and number of days in Semeter)
+User --> (Run Semester simulation\n base on defined preconditions)
+User --> (Print Students statistics after the Semester)
+
+@enduml
