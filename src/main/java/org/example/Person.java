@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class Person {
+public class Person implements SkillGetter{
     protected String name; // private => protected by dziedziczaca klasa Student mogła na tym operować
     protected String surName;
     protected int health; // trzy zmienne, najczęściej edytowane
@@ -103,6 +103,14 @@ public class Person {
                 ", health=" + health +
                 '}';
     }
+
+    @Override
+    public int getSkillValue(String skill) {
+        Integer value = this.skills.get(skill);
+        return value != null ? value : 0;
+    }
+
+
 
     public String getSkillsAsString() {
         StringBuilder stringBuffer = new StringBuilder();
