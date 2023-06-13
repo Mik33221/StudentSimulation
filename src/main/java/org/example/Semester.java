@@ -1,14 +1,18 @@
 package org.example;
 
+import org.example.events.EventGenerator;
+
 import java.util.List;
 
 public class Semester {
     final int days;
     final List<Student> studentList;
+    private SkillGetter skillGetter;
 
     public Semester(int days, List<Student> studentList) {
         this.days = days;
         this.studentList = studentList;
+        this.skillGetter = skillGetter;
     }
 
     public void run() {
@@ -17,12 +21,18 @@ public class Semester {
         System.out.println("\n\nStudents' live going on...");
         for (int i = 0; i < this.days; i++) {
             for (Student student : this.studentList) {
-                Event event = EventGenerator.generateRandomEvent();
-                event.modifyStudent(student);
+                //System.out.println(student);
+                EventGenerator.generateRandomEvent(student).modifyStudent(student);
             }
         }
 
         System.out.println("\n\nSession started...");
+        System.out.println("\n\nEgzaminy");
+        for (Student student : this.studentList) {
+            Exam exam = new Exam(student);
+            exam.modifyStudent(student);
+        }
+
         System.out.println("\n\nSemester ended...");
 
     }
