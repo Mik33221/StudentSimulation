@@ -1,0 +1,41 @@
+@startuml
+
+' //www.plantuml.com/plantuml/dpng/hP1DJiGm38NtFeLdroxc0bqWa41i-96O4uJMWo9Dayfn1_Nsk2P1hHHsiqcYv-VFpxbFubZcyGAkbyZui9umgUPxFxaW-Efy05XFFDxzrZly8ZdHI4c87zsIchP37mIiYaVrhVuEqyPZZXheRHu_YT_F9va72l8lBEnz1TWpEI4iSVu6544RwHigyiJQRx3rKiQBJzAqK1oO9zTwUGxgX4kC4zALUC4C0a3S0fwkAZvJ87PvNtlIXmj37Asg8CIyXGc0-pO55P8jKwrlmf4vpRFDiyECSV3d9OTkajqgPw4j8tPa00e3LFxdbd-BXmF03m00
+
+actor Actor
+participant Main
+
+Main -> Actor: getSemesterDays(): int
+Actor --> Main: semesterDays: int
+
+Main -> Actor: getNumberOfStudents(): int
+Actor --> Main: numberOfStudents: int
+
+create Semester
+Main -> Semester: new
+
+Main -> Semester: printStudentStateList()
+Semester -> Main
+
+Main -> Semester: run()
+
+loop every Student
+
+  Semester -> EventGenerator: generateRandomEvent()
+  create Event
+  EventGenerator --> Event: new
+  EventGenerator --> Semester: event: Event
+
+  Semester --> Event: modifyStudent(student: Student)
+  Event --> Semester
+
+end
+
+Semester -> Main
+
+Main -> Semester: printStudentStateList()
+Semester -> Main
+
+Main -> Semester !!
+
+@enduml

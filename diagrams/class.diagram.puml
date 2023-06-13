@@ -1,0 +1,76 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+' //www.plantuml.com/plantuml/dpng/hLB1QXin4BthAmRdKBUkGtir8II7qXYQOBg5dfNLn2kyqfgPaSas-D-xahPAR49Jg2zh-StJUqzFkcBH9C6rYZVMRpLf1tMhcQz5oDu7mMNT-Sh-GlYaL9f0XGvPaE19pS7edXTWlGnhbc3GopVBie3ulQWoSgbcGC5FtozWrrap_DlIi6MSLg858xtCzqeLa_FpInY9X-2NtG1zHO-afIDLqcKkuAEWDmmh9EvyocgzmSUxuEwHIkJelO2NIOPqqbL2rgzZeBnI-s9G1C_0QuU5SGOSwEuGQL2tqXIpZMrRNi2DvkPMRoyoxUFI2wwHOabhbAZmx9knAj1hy4rIZsZKdmtVcb0pZlXEjm7JxBbtWszHYagLqavJw3--XNLSKScKTrtpQmMM2W-kBh-ZftWJjju3nXcFxoSHOp5blCwxyBlsfdDf7atI8dfOBqWFkiOC3TgkC_QX7szuolctNFcB9tUKQk8dy64-XyddoIZ_xYXu71NApuusy7VAIfFqRt1Yh7xv0yQgignrsnPTxAMSQWR_VAuibCrFe5GYdaphLajpEhLLqxEj-Jy5hz2RuDhV
+
+class Semester {
+- days: int
+- studentList: List<Student>
++ run(): void
++ printStudentStateList(): void
+}
+
+Semester ..> Student
+Semester ..> EventGenerator
+
+
+class Student extends Person {
+- indexNumber: int
+- state: StudentState
++ toString(): String
+}
+
+
+class Person {
+# name: String
+# surName: String
+# health: int
+- skills: HashMap<String,Integer>
++ getName(): String
++ getSurName(): String
++ getHealth(): int
++ increaseHealth(value: int): void
++ decreaseHealth(value: int): void
++ increaseSkills(skill: String): void
++ toString(): String
++ getSkillsAsString(): String
+}
+
+
+
+
+class EventGenerator {
+- {static} events: List<Event>
++ {static} generateRandomEvent(): Event
+}
+
+interface Event {
+modifyStudent(student: Student): void
+}
+
+EventGenerator "n" *-- "1" Event
+' EventGenerator "1" *-- "1" Work
+' EventGenerator "1" *-- "1" Party
+' EventGenerator "1" *-- "1" StudyIT
+
+class Work implements Event {
++ modifyStudent(student: Student): void
+}
+
+class Party implements Event {
++ modifyStudent(student: Student): void
+}
+
+class StudyIT implements Event {
++ modifyStudent(student: Student): void
+}
+
+class StudyMath implements Event {
++ modifyStudent(student: Student): void
+}
+
+class StudyPhysics implements Event {
++ modifyStudent(student: Student): void
+}
+
+@enduml
