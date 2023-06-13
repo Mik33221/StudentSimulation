@@ -1,11 +1,16 @@
 package org.example;
 
+import org.example.events.Event;
+
+
 public class Exam implements Event {
+
     private SkillGetter skillGetter;
 
     public Exam(SkillGetter skillGetter) {
         this.skillGetter = skillGetter;
     }
+
 
     @Override
     public void modifyStudent(Student student) {
