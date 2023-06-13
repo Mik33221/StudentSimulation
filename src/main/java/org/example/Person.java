@@ -3,6 +3,7 @@ package org.example;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 public class Person implements SkillGetter{
     protected String name; // private => protected by dziedziczaca klasa Student mogła na tym operować
@@ -12,10 +13,6 @@ public class Person implements SkillGetter{
     protected int social;
     private final HashMap<String, Integer> skills = new HashMap<>(); // hermetyczna dana - zmieniana tylko przez metodę
                                                                      // tablica na skille, student zyskuje je w trakcie semestru, nie może tracić
-    public Person(String name, String surName) {
-        this(name, surName, 100,0);
-    }
-
     public Person(String name, String surName, int health, int money) {
         this.name = name;
         this.surName = surName;
@@ -110,7 +107,9 @@ public class Person implements SkillGetter{
         return value != null ? value : 0;
     }
 
-
+    public Set<String> getAllSkills() {
+        return this.skills.keySet();
+    }
 
     public String getSkillsAsString() {
         StringBuilder stringBuffer = new StringBuilder();
