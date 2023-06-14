@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object "p1:Person" as Person1
+Person1 : name = "John"
+Person1 : surName = "Smith"
+Person1 : health = 40
+Person1 : money = 60
+Person1 : social = 30
+Person1 : skills = "Math: 20, Physics: 20, IT: 10"
+
+
+object "s1:Student" as Student1
+Student1 : indexNumber = 1
+Student1 : examGrades = "2;3;4"
+Student1 --|> Person1
+
+object "p2:Person" as Person2
+Person2 : name = "Linsey"
+Person2 : surName = "Serna"
+Person2 : health = 70
+Person2 : money = 60
+Person2 : social = 70
+Person2 : skills = "Math: 20, Physics: 20, IT: 10"
+
+
+object "s2:Student" as Student2
+Student2 : indexNumber = 2
+Student2 : examGrades = "5;3;3"
+Student2 --|> Person2
+
+
+map StudentList {
+0 *--> Student1
+1 *--> Student2
+}
+
+object "sem:Semester" as Semester
+Semester : days = 105
+Semester o-- StudentList
+
+@enduml
