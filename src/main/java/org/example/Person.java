@@ -88,8 +88,6 @@ public class Person implements SkillGetter{
         } else{
             this.skills.merge(skill, 2, (oldValue, newValue) -> oldValue + newValue);
         }
-        decreaseMoney(40);
-        increaseSocial(new Random().nextInt(2,4));
     }
 
     @Override
