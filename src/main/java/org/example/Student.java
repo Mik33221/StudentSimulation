@@ -8,13 +8,17 @@ import java.util.stream.IntStream;
 public class Student extends Person {
     final int indexNumber;
     final StudentState state;
+    private int[] examGrades;
     private final HashMap<String, Integer> predispositions; // tablica na wartości które mają wpływać na decyzje studentan, nie modyfikowane
-    public Student(String name, String surName, int health, int money, int indexNumber, HashMap<String, Integer> predispositions) {
+
+    public Student(String name, String surName, int health, int money, int indexNumber,
+                   HashMap<String, Integer> predispositions, int[] ExamGrades, String status) {
         super(name, surName, health, money);
         this.indexNumber = indexNumber;
         this.state = StudentState.ACTIVE;
         this.predispositions = (HashMap<String, Integer>) predispositions.clone();
         this.social = this.predispositions.get("InitialSocialization");
+        this.examGrades = examGrades;
     }
 
     public int getPredisposition(String pred){
@@ -61,4 +65,8 @@ public class Student extends Person {
         }
         return stringBuffer.toString();
     }
+    public void setExamGrades(int[] examGrades) {
+        this.examGrades = examGrades;
+    }
 }
+
