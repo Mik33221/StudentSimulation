@@ -32,25 +32,8 @@ public class Semester {
         System.out.println("\n\nSession started...");
         this.printStudentStateStatistics();
 
-        //SkillGetter skillGetter = new SkillGetter();
-
-        System.out.println("\n\nExams");
-        System.out.println("\n\n--------------EGZAMINY--------------");
-             System.out.println("studentId | Matematyka | Fizyka | IT");
-        System.out.println("-------------------------------------");
-        for (Student student : this.studentList) {
-            Exam exam = new Exam(student.getSkillValue("Math"),student.getSkillValue("Physics"),student.getSkillValue("IT"));
-
-            exam.modifyStudent(student);
-            System.out.println("-------------------------------------");
-        }
-
-      /*  System.out.println("\n\nExam Results");
-        ExamResultsPrinter resultsPrinter =
-                new ExamResultsPrinter(studentList);
-        resultsPrinter.displayExamResultsTable();
-*/
-
+        ExamSession examSession = new ExamSession(studentList);
+        examSession.run();
 
         System.out.println("\n\nNotes histogram...");
         printNotesStatistics();
