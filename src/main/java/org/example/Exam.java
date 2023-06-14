@@ -4,9 +4,9 @@ import org.example.events.Event;
 
 
 public class Exam implements Event {
-    private int mathSkillValue;
-    private int physicsSkillValue;
-    private int itSkillValue;
+    final private int mathSkillValue;
+    final private int physicsSkillValue;
+    final private int itSkillValue;
 
     public Exam(int mathSkillValue, int physicsSkillValue, int itSkillValue) {
         this.mathSkillValue = mathSkillValue;
