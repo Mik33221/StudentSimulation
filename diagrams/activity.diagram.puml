@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:get Semester days;
+:get number of Students;
+:generate list of Students;
+:create Semester with SudentsList;
+while (current day < Semester.days)
+    while (student in StudentsList)
+        :generate daily random event;
+        :event modifies student skills;
+    endwhile
+endwhile
+while (student in StudentsList)
+    :start exam;
+    :exam modifies student exam grades;
+    if (exam grades == 2) then (yes)
+        :set student state to deleted;
+    endif
+endwhile
+
+while (student in StudentsList)
+    :print user statistic;
+endwhile
+
+stop
+@enduml
