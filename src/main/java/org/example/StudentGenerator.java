@@ -37,8 +37,9 @@ public class StudentGenerator {
                             random.nextInt(80, 100),
                             random.nextInt(10,2000),
                             indexNumber++,
-                            RollPredispositions(random.nextBoolean())
-                    );
+                            RollPredispositions(random.nextBoolean()),
+            new int[]{0,0,0},
+                    "Aktywny");
             students.add(newStudent);
         }
         return students;

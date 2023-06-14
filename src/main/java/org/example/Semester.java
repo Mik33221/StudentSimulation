@@ -8,6 +8,7 @@ public class Semester {
     final int days;
     final List<Student> studentList;
 
+
     public Semester(int days, List<Student> studentList) {
         this.days = days;
         this.studentList = studentList;
@@ -31,10 +32,25 @@ public class Semester {
         System.out.println("\n\nSession started...");
         this.printStudentStateStatistics();
 
+        //SkillGetter skillGetter = new SkillGetter();
+
         System.out.println("\n\nExams");
+        System.out.println("\n\n--------------EGZAMINY--------------");
+             System.out.println("studentId | Matematyka | Fizyka | IT");
+        System.out.println("-------------------------------------");
         for (Student student : this.studentList) {
-            new Exam().modifyStudent(student);
+            Exam exam = new Exam(student.getSkillValue("Math"),student.getSkillValue("Physics"),student.getSkillValue("IT"));
+
+            exam.modifyStudent(student);
+            System.out.println("-------------------------------------");
         }
+
+      /*  System.out.println("\n\nExam Results");
+        ExamResultsPrinter resultsPrinter =
+                new ExamResultsPrinter(studentList);
+        resultsPrinter.displayExamResultsTable();
+*/
+
 
         System.out.println("\n\nNotes histogram...");
         printNotesStatistics();
