@@ -25,17 +25,15 @@ public class Semester {
                 EventGenerator.generateRandomEvent(student).modifyStudent(student);
             }
 
-            Display.clearScreen();
-            for (Student student : this.studentList) {
-                Display.printStudentStatistic(student);
-            }
-
-            if ((i+1) % 10 == 0) {
-                System.out.println("\n\nNext 10 days passed...");
+            if ((i+1) % 5 == 0) {
+                Display.clearScreen();
+                System.out.println("\n\nNext 5 days passed...");
                 for (Student student : this.studentList) {
                     Display.printStudentStatistic(student);
                 }
-                TimeUnit.SECONDS.sleep(1);
+                int time = 1;
+                if(i<20) time = 3;
+                TimeUnit.SECONDS.sleep(time);
             }
         }
 

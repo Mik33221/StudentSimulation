@@ -11,7 +11,7 @@ public class Display {
         System.out.println();
     }
     public static void printStudentStatistic(Student student){
-        System.out.println(student.getName()+" "+student.getSurName()+" "+student.indexNumber+""+" health: "+student.getHealth()+" money: "+student.getMoney());
+        System.out.println(student.getName()+" "+student.getSurName()+" "+student.indexNumber+""+" \thealth: "+student.getHealth()+" \tmoney: "+student.getMoney());
         System.out.print("Math   : ");
         Display.printSkill(student.getSkillValue("Math"));
         System.out.print("Physics: ");
