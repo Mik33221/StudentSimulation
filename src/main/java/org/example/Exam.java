@@ -17,42 +17,16 @@ public class Exam implements Event {
     @Override
     public void modifyStudent(Student student) {
         int[] examGrades = new int[3];
-        int numFailedExams = 0;
+        //int numFailedExams = 0; Zmienna nie używana nigdzie, proponuje wprowadzić tą funkcjonalność zliczając dwóje studentów
 
         if (student.getHealth() > 10) {
-            if (mathSkillValue >= 30) {
-                int grade = calGrade(mathSkillValue);
-                examGrades[0] = grade;
-            } else {
-                examGrades[0] = 2;
-                numFailedExams++;
-            }
-
-            if (physicsSkillValue >= 30) {
-                int grade = calGrade(physicsSkillValue);
-                examGrades[1] = grade;
-            } else {
-                examGrades[1] = 2;
-                numFailedExams++;
-            }
-
-
-            if (itSkillValue >= 30) {
-                int grade = calGrade(itSkillValue);
-                examGrades[2] = grade;
-            } else {
-                examGrades[2] = 2;
-                numFailedExams++;
-            }
+            examGrades[0] = calGrade(mathSkillValue);
+            examGrades[1] = calGrade(physicsSkillValue);
+            examGrades[2] = calGrade(itSkillValue);
         }
 
         student.setExamGrades(examGrades);
-        ExamResultsPrinter resultsPrinter = new ExamResultsPrinter(student.indexNumber, examGrades);
-        resultsPrinter.printResults();
-
     }
-
-
 
     private int calGrade(int points) {
         if (points >= 50) {
