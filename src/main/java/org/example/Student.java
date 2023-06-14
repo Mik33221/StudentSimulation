@@ -68,5 +68,8 @@ public class Student extends Person {
     public void setExamGrades(int[] examGrades) {
         this.examGrades = examGrades;
     }
+    public int[] getExamGrades(){
+        return examGrades;
+    }
 }
 
