@@ -66,7 +66,7 @@ public class Semester {
         }
         if (this.studentList.size() > 0) {
             for (int i = 0; i < histogram.length; i++) {
-                printHistogramBar(i + 2, histogram[i] * 100 / this.studentList.size() );
+                printHistogramBar(i + 2, histogram[i] * 100 / (this.studentList.size()*3) );
             }
         }
     }
