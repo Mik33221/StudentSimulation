@@ -3,6 +3,7 @@ package org.example;
 import org.example.events.EventGenerator;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Semester {
     final int days;
@@ -14,7 +15,7 @@ public class Semester {
         this.studentList = studentList;
     }
 
-    public void run() {
+    public void run() throws InterruptedException {
         System.out.println("\n\nSemester begins...");
         this.printStudentStateStatistics();
 
@@ -23,9 +24,16 @@ public class Semester {
             for (Student student : this.studentList) {
                 EventGenerator.generateRandomEvent(student).modifyStudent(student);
             }
-            if ((i+1) % 10 == 0) {
-                System.out.println("\n\nNext 10 days passed...");
-                this.printStudentStateStatistics();
+
+            if ((i+1) % 5 == 0) {
+                Display.clearScreen();
+                System.out.println("\n\nNext 5 days passed...");
+                for (Student student : this.studentList) {
+                    Display.printStudentStatistic(student);
+                }
+                int time = 1;
+                if(i<20) time = 3;
+                TimeUnit.SECONDS.sleep(time);
             }
         }
 
@@ -40,6 +48,14 @@ public class Semester {
 
         System.out.println("\n\nSemester ended...");
         this.printStudentStateStatistics();
+
+        /*for (int i = 0; i < 100; i++) {
+            System.out.println(i);
+            Display.clearScreen();
+            Display.printSkill(30);
+            this.printStudentStateStatistics();
+            TimeUnit.SECONDS.sleep(1);
+        }*/
     }
     private void printNotesStatistics() {
         int[] histogram = {0, 0, 0, 0};
@@ -50,7 +66,7 @@ public class Semester {
         }
         if (this.studentList.size() > 0) {
             for (int i = 0; i < histogram.length; i++) {
-                printHistogramBar(i + 2, histogram[i] * 100 / this.studentList.size() );
+                printHistogramBar(i + 2, histogram[i] * 100 / (this.studentList.size()*3) );
             }
         }
     }
