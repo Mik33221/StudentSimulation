@@ -39,7 +39,7 @@ public class MainGUI implements ActionListener, Observer {
         simulateButton.setVisible(true);
         this.simulateButton = simulateButton;
 
-        JTextArea consoleArea = new JTextArea(10, 70);
+        JTextArea consoleArea = new JTextArea(30, 70);
         Font font = new Font("Courier New", Font.BOLD, 20);
         consoleArea.setFont(font);
         consoleArea.setLineWrap(false);
@@ -76,12 +76,19 @@ public class MainGUI implements ActionListener, Observer {
     public void actionPerformed(ActionEvent e) {
         final int semesterDays = Integer.parseInt(this.semesterDays.getText());
         final int numberOfStudents = Integer.parseInt(this.numberStudents.getText());
-        Runnable worker = new SemesterWorker(semesterDays, StudentGenerator.createRandomStudent(numberOfStudents), this);
-        new Thread(worker).start();
+        this.simulateButton.setEnabled(false);
+        SemesterWorker semester = new SemesterWorker(semesterDays, StudentGenerator.createRandomStudent(numberOfStudents));
+        semester.addObserver(this);
+        new Thread(semester).start();
     }
 
     @Override
     public void update(String message) {
         this.consoleArea.setText(message);
+    }
+
+    @Override
+    public void finished() {
+        this.simulateButton.setEnabled(true);
     }
 }

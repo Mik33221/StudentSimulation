@@ -13,52 +13,57 @@ public class SemesterWorker implements Runnable, Observable {
     private Stack<String> console = new Stack<>();
 
     private List<Observer> observers = new ArrayList<>();
-    private boolean cancel = false;
 
-    public SemesterWorker(int days, List<Student> studentList, Observer observer) {
+    public SemesterWorker(int days, List<Student> studentList) {
         this.days = days;
         this.studentList = studentList;
-        this.observers.add(observer);
     }
 
     @Override
     public void run() {
-        while (!cancel) {
-            outputStudentStateStatistics("Semester begins...");
+        outputStudentStateStatistics("Semester begins...");
 
-            outputStudentStateStatistics("Students' live going on...");
-            for (int i = 0; i < this.days; i++) {
-                for (Student student : this.studentList) {
-                    EventGenerator.generateRandomEvent(student).modifyStudent(student);
-                }
-                boolean tenDaysPassed = ((i+1) % 10 == 0);
-                if (tenDaysPassed) {
-                    outputStudentStateStatistics(String.format("Day %d passed...", i+1));
-                }
+        outputStudentStateStatistics("Students' live going on...");
+        for (int i = 0; i < this.days; i++) {
+            for (Student student : this.studentList) {
+                EventGenerator.generateRandomEvent(student).modifyStudent(student);
             }
+            boolean tenDaysPassed = ((i + 1) % 10 == 0);
+            if (tenDaysPassed) {
+                outputStudentStateStatistics(String.format("Day %d passed...", i + 1));
+            }
+        }
 
-            outputStudentStateStatistics("Session started...");
+        outputStudentStateStatistics("Session started...");
 
-            ExamSession examSession = new ExamSession(studentList);
-            examSession.run();
+        ExamSession examSession = new ExamSession(studentList);
+        examSession.run();
 
 //            outputStudentStateStatistics("Notes histogram...");
 //        printNotesStatistics();
 
-            outputStudentStateStatistics("Semester ended...");
-            cancel();
-        }
+        outputStudentStateStatistics("Semester ended...");
+        notifyOberversFinished();
     }
+
     private void outputStudentStateStatistics(String title) {
         int sumActive = 0;
         int sumNonActive = 0;
         int sumHealthOver70 = 0;
         int sumHealthBelow20 = 0;
         for (Student student : this.studentList) {
-            if (student.state == StudentState.ACTIVE) { sumActive++; }
-            if (student.state == StudentState.DELETED) { sumNonActive++; }
-            if (student.getHealth() > 70) { sumHealthOver70++; }
-            if (student.getHealth() <= 20) { sumHealthBelow20++; }
+            if (student.state == StudentState.ACTIVE) {
+                sumActive++;
+            }
+            if (student.state == StudentState.DELETED) {
+                sumNonActive++;
+            }
+            if (student.getHealth() > 70) {
+                sumHealthOver70++;
+            }
+            if (student.getHealth() <= 20) {
+                sumHealthBelow20++;
+            }
         }
         popMessage(3);
         console.push(title);
@@ -72,13 +77,14 @@ public class SemesterWorker implements Runnable, Observable {
         String messages = String.join("\n", this.console);
         notifyObservers(messages);
         try {
-            TimeUnit.MILLISECONDS.sleep(1000); //pause
+            TimeUnit.MILLISECONDS.sleep(100); //pause
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
     }
+
     private void popMessage(int count) {
-        while(!this.console.empty() && count > 0) {
+        while (!this.console.empty() && count > 0) {
             this.console.pop();
             count--;
         }
@@ -95,7 +101,8 @@ public class SemesterWorker implements Runnable, Observable {
         this.observers.forEach(observer -> observer.update(message));
     }
 
-    void cancel() {
-        cancel = true;
+    public void notifyOberversFinished() {
+        this.observers.forEach(observer -> observer.finished());
     }
+
 }
