@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+[*] --> InDecision
+
+InDecision --> Rest: health < 20 or every 5 days
+Rest --> InDecision: new day begins
+
+InDecision --> Work: money < 40
+Work --> InDecision: new day begins
+
+@enduml
