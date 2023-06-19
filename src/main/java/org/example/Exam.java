@@ -7,11 +7,13 @@ public class Exam implements Event {
     private int mathSkillValue;
     private int physicsSkillValue;
     private int itSkillValue;
+    private SemesterLogger logger;
 
-    public Exam(int mathSkillValue, int physicsSkillValue, int itSkillValue) {
+    public Exam(int mathSkillValue, int physicsSkillValue, int itSkillValue,  SemesterLogger logger) {
         this.mathSkillValue = mathSkillValue;
         this.physicsSkillValue = physicsSkillValue;
         this.itSkillValue = itSkillValue;
+        this.logger = logger;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class Exam implements Event {
         }
 
         student.setExamGrades(examGrades);
-        ExamResultsPrinter resultsPrinter = new ExamResultsPrinter(student.indexNumber, examGrades);
+        ExamResultsPrinter resultsPrinter = new ExamResultsPrinter(student.indexNumber, examGrades, logger);
         resultsPrinter.printResults();
 
     }

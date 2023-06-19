@@ -1,5 +1,7 @@
 package org.example;
-
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import org.example.events.EventGenerator;
 
 import java.util.List;
@@ -7,11 +9,13 @@ import java.util.List;
 public class Semester {
     final int days;
     final List<Student> studentList;
+    private SemesterLogger logger;
 
 
-    public Semester(int days, List<Student> studentList) {
+    public Semester(int days, List<Student> studentList, String logFilePath) {
         this.days = days;
         this.studentList = studentList;
+        this.logger = new SemesterLogger(logFilePath);
     }
 
     public void run() {
@@ -34,22 +38,17 @@ public class Semester {
 
         //SkillGetter skillGetter = new SkillGetter();
 
-        System.out.println("\n\nExams");
-        System.out.println("\n\n--------------EGZAMINY--------------");
-             System.out.println("studentId | Matematyka | Fizyka | IT");
-        System.out.println("-------------------------------------");
+        logger.log("\n\nExams");
+        logger.log("\n\n--------------EGZAMINY--------------");
+        logger.log("studentId | Matematyka | Fizyka | IT");
+        logger.log("-------------------------------------");
         for (Student student : this.studentList) {
-            Exam exam = new Exam(student.getSkillValue("Math"),student.getSkillValue("Physics"),student.getSkillValue("IT"));
+            Exam exam = new Exam(student.getSkillValue("Math"), student.getSkillValue("Physics"),student.getSkillValue("IT"), logger);
 
             exam.modifyStudent(student);
             System.out.println("-------------------------------------");
         }
 
-      /*  System.out.println("\n\nExam Results");
-        ExamResultsPrinter resultsPrinter =
-                new ExamResultsPrinter(studentList);
-        resultsPrinter.displayExamResultsTable();
-*/
 
 
         System.out.println("\n\nNotes histogram...");
@@ -58,6 +57,8 @@ public class Semester {
         System.out.println("\n\nSemester ended...");
         this.printStudentStateStatistics();
     }
+
+
     private void printNotesStatistics() {
         int[] histogram = {0, 0, 0, 0};
         for (Student student : this.studentList) {
@@ -69,6 +70,15 @@ public class Semester {
             for (int i = 0; i < histogram.length; i++) {
                 printHistogramBar(i + 2, histogram[i] * 100 / this.studentList.size() );
             }
+        }
+    }
+
+    public void saveDiagramToFile(String diagramText, String fileName) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
+            writer.println(diagramText);
+            System.out.println("Diagram został zapisany do pliku: " + fileName);
+        } catch (IOException e) {
+            System.out.println("Wystąpił błąd podczas zapisu diagramu do pliku: " + e.getMessage());
         }
     }
 
