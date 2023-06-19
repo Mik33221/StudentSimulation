@@ -3,14 +3,9 @@ import java.io.*;
 import java.io.File;
 
 public class SemesterLogger {
-    private String logFilePath;
+    private static String logFilePath = System.getProperty("java.io.tmpdir") + '/' + "semester.log";
 
-    public SemesterLogger(String logFilePath) {
-        String tempDir = System.getProperty("java.io.tmpdir");
-        this.logFilePath = tempDir + File.separator + "semester.log";
-    }
-
-    public void log(String message) {
+    public static void log(String message) {
         // Wyświetlanie w konsoli
         System.out.print(message);
 
