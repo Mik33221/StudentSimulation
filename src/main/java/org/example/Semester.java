@@ -97,8 +97,8 @@ public class Semester {
         int sumHealthOver70 = 0;
         int sumHealthBelow20 = 0;
         for (Student student : this.studentList) {
-            if (student.state == StudentState.ACTIVE) { sumActive++; }
-            if (student.state == StudentState.DELETED) { sumNonActive++; }
+            if (student.getState() == StudentState.ACTIVE) { sumActive++; }
+            if (student.getState() == StudentState.DELETED) { sumNonActive++; }
             if (student.getHealth() > 70) { sumHealthOver70++; }
             if (student.getHealth() <= 20) { sumHealthBelow20++; }
         }

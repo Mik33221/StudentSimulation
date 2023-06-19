@@ -39,9 +39,6 @@ public class SemesterWorker implements Runnable, Observable {
         ExamSession examSession = new ExamSession(studentList);
         examSession.run();
 
-//            outputStudentStateStatistics("Notes histogram...");
-//        printNotesStatistics();
-
         outputStudentStateStatistics("Semester ended...");
         notifyOberversFinished();
     }
@@ -52,10 +49,10 @@ public class SemesterWorker implements Runnable, Observable {
         int sumHealthOver70 = 0;
         int sumHealthBelow20 = 0;
         for (Student student : this.studentList) {
-            if (student.state == StudentState.ACTIVE) {
+            if (student.getState() == StudentState.ACTIVE) {
                 sumActive++;
             }
-            if (student.state == StudentState.DELETED) {
+            if (student.getState() == StudentState.DELETED) {
                 sumNonActive++;
             }
             if (student.getHealth() > 70) {
@@ -65,19 +62,23 @@ public class SemesterWorker implements Runnable, Observable {
                 sumHealthBelow20++;
             }
         }
-        popMessage(3);
-        console.push(title);
-        console.push("|Active|NonActive|SuperHealthy|NonHealthy|");
-        console.push(String.format("|%6d|%9d|%12d|%10d|", sumActive, sumNonActive, sumHealthOver70, sumHealthBelow20));
+        popMessage(2);
+        pushMessage(title);
+        pushMessage("|Active|NonActive|SuperHealthy|NonHealthy|");
+        pushMessage(String.format("|%6d|%9d|%12d|%10d|", sumActive, sumNonActive, sumHealthOver70, sumHealthBelow20));
 
         flushToConsole();
+    }
+
+    private String pushMessage(String title) {
+        return console.push(title);
     }
 
     private void flushToConsole() {
         String messages = String.join("\n", this.console);
         notifyObservers(messages);
         try {
-            TimeUnit.MILLISECONDS.sleep(100); //pause
+            TimeUnit.MILLISECONDS.sleep(1000); //pause
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
