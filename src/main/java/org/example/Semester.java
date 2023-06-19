@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import org.example.events.EventGenerator;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Semester {
     final int days;
@@ -18,7 +19,7 @@ public class Semester {
         this.logger = new SemesterLogger(logFilePath);
     }
 
-    public void run() {
+    public void run() throws InterruptedException {
         System.out.println("\n\nSemester begins...");
         this.printStudentStateStatistics();
 
@@ -27,9 +28,16 @@ public class Semester {
             for (Student student : this.studentList) {
                 EventGenerator.generateRandomEvent(student).modifyStudent(student);
             }
-            if ((i+1) % 10 == 0) {
-                System.out.println("\n\nNext 10 days passed...");
-                this.printStudentStateStatistics();
+
+            if ((i+1) % 5 == 0) {
+                Display.clearScreen();
+                System.out.println("\n\nNext 5 days passed...");
+                for (Student student : this.studentList) {
+                    Display.printStudentStatistic(student);
+                }
+                int time = 1;
+                if(i<20) time = 3;
+                TimeUnit.SECONDS.sleep(time);
             }
         }
 
@@ -49,6 +57,8 @@ public class Semester {
             System.out.println("--------------------------------------");
         }
 
+        ExamSession examSession = new ExamSession(studentList);
+        examSession.run();
 
 
         System.out.println("\n\nNotes histogram...");
@@ -57,7 +67,17 @@ public class Semester {
         System.out.println("\n\nSemester ended...");
         this.printStudentStateStatistics();
 
+
         System.out.println("\n Scieżka dostępu do dysku tymczasowego gdzie znajdują się wyniki programu:\n"+ System.getProperty("java.io.tmpdir"));
+
+        /*for (int i = 0; i < 100; i++) {
+            System.out.println(i);
+            Display.clearScreen();
+            Display.printSkill(30);
+            this.printStudentStateStatistics();
+            TimeUnit.SECONDS.sleep(1);
+        }*/
+
     }
 
 
@@ -70,7 +90,7 @@ public class Semester {
         }
         if (this.studentList.size() > 0) {
             for (int i = 0; i < histogram.length; i++) {
-                printHistogramBar(i + 2, histogram[i] * 100 / this.studentList.size() );
+                printHistogramBar(i + 2, histogram[i] * 100 / (this.studentList.size()*3) );
             }
         }
     }
@@ -107,17 +127,17 @@ public class Semester {
     private void printStudentStateStatistics() {
         int sumActive = 0;
         int sumNonActive = 0;
-        int sumHealthOver70 = 0;
-        int sumHealthBelow20 = 0;
+        int sumSuperHealthy = 0;
+        int sumNotHealthy = 0;
         for (Student student : this.studentList) {
-            if (student.state == StudentState.ACTIVE) { sumActive++; }
-            if (student.state == StudentState.DELETED) { sumNonActive++; }
-            if (student.getHealth() > 70) { sumHealthOver70++; }
-            if (student.getHealth() <= 20) { sumHealthBelow20++; }
+            if (student.isActive()) { sumActive++; }
+            if (student.isNotActive()) { sumNonActive++; }
+            if (student.isSuperHealthy()) { sumSuperHealthy++; }
+            if (student.isNotHealthy()) { sumNotHealthy++; }
         }
 //        System.out.println("Students' population statisticts:");
         System.out.printf("|Active|NonActive|SuperHealthy|NonHealthy|\n");
-        System.out.printf("|%6d|%9d|%12d|%10d|\n", sumActive, sumNonActive, sumHealthOver70, sumHealthBelow20);
+        System.out.printf("|%6d|%9d|%12d|%10d|\n", sumActive, sumNonActive, sumSuperHealthy, sumNotHealthy);
 
     }
 }

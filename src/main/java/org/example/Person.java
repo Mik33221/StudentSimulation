@@ -88,8 +88,6 @@ public class Person implements SkillGetter{
         } else{
             this.skills.merge(skill, 2, (oldValue, newValue) -> oldValue + newValue);
         }
-        decreaseMoney(40);
-        increaseSocial(new Random().nextInt(2,4));
     }
 
     @Override
@@ -119,5 +117,12 @@ public class Person implements SkillGetter{
                     .append(", value=").append(entry.getValue()).append("],");
         }
         return stringBuffer.toString();
+    }
+
+    public boolean isSuperHealthy() {
+        return getHealth() > 70;
+    }
+    public boolean isNotHealthy() {
+        return getHealth() <= 20;
     }
 }

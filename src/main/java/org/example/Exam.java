@@ -4,10 +4,11 @@ import org.example.events.Event;
 
 
 public class Exam implements Event {
-    private int mathSkillValue;
-    private int physicsSkillValue;
-    private int itSkillValue;
-    private SemesterLogger logger;
+
+    final private int mathSkillValue;
+    final private int physicsSkillValue;
+    final private int itSkillValue;
+    final private SemesterLogger logger;
 
     public Exam(int mathSkillValue, int physicsSkillValue, int itSkillValue,  SemesterLogger logger) {
         this.mathSkillValue = mathSkillValue;
@@ -22,39 +23,26 @@ public class Exam implements Event {
         int numFailedExams = 0;
 
         if (student.getHealth() > 10) {
-            if (mathSkillValue >= 30) {
-                int grade = calGrade(mathSkillValue);
-                examGrades[0] = grade;
-            } else {
-                examGrades[0] = 2;
-                numFailedExams++;
-            }
+            examGrades[0] = calGrade(mathSkillValue);
+            examGrades[1] = calGrade(physicsSkillValue);
+            examGrades[2] = calGrade(itSkillValue);
+        }
 
-            if (physicsSkillValue >= 30) {
-                int grade = calGrade(physicsSkillValue);
-                examGrades[1] = grade;
-            } else {
-                examGrades[1] = 2;
-                numFailedExams++;
-            }
-
-
-            if (itSkillValue >= 30) {
-                int grade = calGrade(itSkillValue);
-                examGrades[2] = grade;
-            } else {
-                examGrades[2] = 2;
+        for (int grade : examGrades) {
+            if (grade < 3) {
                 numFailedExams++;
             }
         }
 
+        if (numFailedExams > 1) {
+            student.setState(StudentState.DELETED);
+        }
         student.setExamGrades(examGrades);
+      
         ExamResultsPrinter resultsPrinter = new ExamResultsPrinter(student.indexNumber, examGrades, logger);
         resultsPrinter.printResults();
 
     }
-
-
 
     private int calGrade(int points) {
         if (points >= 50) {
