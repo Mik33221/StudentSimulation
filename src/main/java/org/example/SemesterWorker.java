@@ -46,26 +46,18 @@ public class SemesterWorker implements Runnable, Observable {
     private void outputStudentStateStatistics(String title) {
         int sumActive = 0;
         int sumNonActive = 0;
-        int sumHealthOver70 = 0;
-        int sumHealthBelow20 = 0;
+        int sumSuperHealthy = 0;
+        int sumNotHealthy = 0;
         for (Student student : this.studentList) {
-            if (student.getState() == StudentState.ACTIVE) {
-                sumActive++;
-            }
-            if (student.getState() == StudentState.DELETED) {
-                sumNonActive++;
-            }
-            if (student.getHealth() > 70) {
-                sumHealthOver70++;
-            }
-            if (student.getHealth() <= 20) {
-                sumHealthBelow20++;
-            }
+            if (student.isActive()) { sumActive++; }
+            if (student.isNotActive()) { sumNonActive++; }
+            if (student.isSuperHealthy()) { sumSuperHealthy++; }
+            if (student.isNotHealthy()) { sumNotHealthy++; }
         }
         popMessage(2);
         pushMessage(title);
         pushMessage("|Active|NonActive|SuperHealthy|NonHealthy|");
-        pushMessage(String.format("|%6d|%9d|%12d|%10d|", sumActive, sumNonActive, sumHealthOver70, sumHealthBelow20));
+        pushMessage(String.format("|%6d|%9d|%12d|%10d|", sumActive, sumNonActive, sumSuperHealthy, sumNotHealthy));
 
         flushToConsole();
     }

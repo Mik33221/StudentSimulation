@@ -118,4 +118,11 @@ public class Person implements SkillGetter{
         }
         return stringBuffer.toString();
     }
+
+    public boolean isSuperHealthy() {
+        return getHealth() > 70;
+    }
+    public boolean isNotHealthy() {
+        return getHealth() <= 20;
+    }
 }

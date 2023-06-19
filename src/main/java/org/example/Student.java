@@ -79,5 +79,13 @@ public class Student extends Person {
     public int[] getExamGrades(){
         return examGrades;
     }
+
+    public boolean isActive() {
+        return getState() == StudentState.ACTIVE;
+    }
+
+    public boolean isNotActive() {
+        return getState() == StudentState.DELETED;
+    }
 }
 

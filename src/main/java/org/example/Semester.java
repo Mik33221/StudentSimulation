@@ -94,17 +94,17 @@ public class Semester {
     private void printStudentStateStatistics() {
         int sumActive = 0;
         int sumNonActive = 0;
-        int sumHealthOver70 = 0;
-        int sumHealthBelow20 = 0;
+        int sumSuperHealthy = 0;
+        int sumNotHealthy = 0;
         for (Student student : this.studentList) {
-            if (student.getState() == StudentState.ACTIVE) { sumActive++; }
-            if (student.getState() == StudentState.DELETED) { sumNonActive++; }
-            if (student.getHealth() > 70) { sumHealthOver70++; }
-            if (student.getHealth() <= 20) { sumHealthBelow20++; }
+            if (student.isActive()) { sumActive++; }
+            if (student.isNotActive()) { sumNonActive++; }
+            if (student.isSuperHealthy()) { sumSuperHealthy++; }
+            if (student.isNotHealthy()) { sumNotHealthy++; }
         }
 //        System.out.println("Students' population statisticts:");
         System.out.printf("|Active|NonActive|SuperHealthy|NonHealthy|\n");
-        System.out.printf("|%6d|%9d|%12d|%10d|\n", sumActive, sumNonActive, sumHealthOver70, sumHealthBelow20);
+        System.out.printf("|%6d|%9d|%12d|%10d|\n", sumActive, sumNonActive, sumSuperHealthy, sumNotHealthy);
 
     }
 }
