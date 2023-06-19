@@ -17,7 +17,9 @@ public class Semester {
     }
 
     public void run() throws InterruptedException {
-        System.out.println("\n\nSemester begins...");
+        int time = 1;
+        if(i<20) time = 3;
+        TimeUnit.SECONDS.sleep(time);        System.out.println("\n\nSemester begins...");
         this.printStudentStateStatistics();
 
         System.out.println("\n\nStudents' live going on...");
@@ -32,27 +34,12 @@ public class Semester {
                 for (Student student : this.studentList) {
                     Display.printStudentStatistic(student);
                 }
-                int time = 1;
-                if(i<20) time = 3;
-                TimeUnit.SECONDS.sleep(time);
+
             }
         }
 
         System.out.println("\n\nSession started...");
         this.printStudentStateStatistics();
-
-        //SkillGetter skillGetter = new SkillGetter();
-
-        SemesterLogger.log("\n\nExams");
-        SemesterLogger.log("\n\n--------------EGZAMINY----------------");
-        SemesterLogger.log("\nstudentId | Matematyka | Fizyka | IT\n");
-        SemesterLogger.log("--------------------------------------\n");
-        for (Student student : this.studentList) {
-            Exam exam = new Exam(student.getSkillValue("Math"), student.getSkillValue("Physics"),student.getSkillValue("IT"));
-
-            exam.modifyStudent(student);
-            System.out.println("--------------------------------------");
-        }
 
         ExamSession examSession = new ExamSession(studentList);
         examSession.run();
