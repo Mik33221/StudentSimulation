@@ -10,13 +10,10 @@ import java.util.concurrent.TimeUnit;
 public class Semester {
     final int days;
     final List<Student> studentList;
-    private SemesterLogger logger;
 
-
-    public Semester(int days, List<Student> studentList, String logFilePath) {
+    public Semester(int days, List<Student> studentList) {
         this.days = days;
         this.studentList = studentList;
-        this.logger = new SemesterLogger(logFilePath);
     }
 
     public void run() throws InterruptedException {
@@ -46,12 +43,12 @@ public class Semester {
 
         //SkillGetter skillGetter = new SkillGetter();
 
-        logger.log("\n\nExams");
-        logger.log("\n\n--------------EGZAMINY----------------");
-        logger.log("\nstudentId | Matematyka | Fizyka | IT\n");
-        logger.log("--------------------------------------\n");
+        SemesterLogger.log("\n\nExams");
+        SemesterLogger.log("\n\n--------------EGZAMINY----------------");
+        SemesterLogger.log("\nstudentId | Matematyka | Fizyka | IT\n");
+        SemesterLogger.log("--------------------------------------\n");
         for (Student student : this.studentList) {
-            Exam exam = new Exam(student.getSkillValue("Math"), student.getSkillValue("Physics"),student.getSkillValue("IT"), logger);
+            Exam exam = new Exam(student.getSkillValue("Math"), student.getSkillValue("Physics"),student.getSkillValue("IT"));
 
             exam.modifyStudent(student);
             System.out.println("--------------------------------------");
