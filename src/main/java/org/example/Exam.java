@@ -4,14 +4,17 @@ import org.example.events.Event;
 
 
 public class Exam implements Event {
+
     final private int mathSkillValue;
     final private int physicsSkillValue;
     final private int itSkillValue;
+    final private SemesterLogger logger;
 
-    public Exam(int mathSkillValue, int physicsSkillValue, int itSkillValue) {
+    public Exam(int mathSkillValue, int physicsSkillValue, int itSkillValue,  SemesterLogger logger) {
         this.mathSkillValue = mathSkillValue;
         this.physicsSkillValue = physicsSkillValue;
         this.itSkillValue = itSkillValue;
+        this.logger = logger;
     }
 
     @Override
@@ -35,6 +38,10 @@ public class Exam implements Event {
             student.setState(StudentState.DELETED);
         }
         student.setExamGrades(examGrades);
+      
+        ExamResultsPrinter resultsPrinter = new ExamResultsPrinter(student.indexNumber, examGrades, logger);
+        resultsPrinter.printResults();
+
     }
 
     private int calGrade(int points) {
