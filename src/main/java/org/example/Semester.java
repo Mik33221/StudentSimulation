@@ -17,9 +17,7 @@ public class Semester {
     }
 
     public void run() throws InterruptedException {
-        int time = 1;
-        if(i<20) time = 3;
-        TimeUnit.SECONDS.sleep(time);        System.out.println("\n\nSemester begins...");
+        System.out.println("\n\nSemester begins...");
         this.printStudentStateStatistics();
 
         System.out.println("\n\nStudents' live going on...");
@@ -34,7 +32,9 @@ public class Semester {
                 for (Student student : this.studentList) {
                     Display.printStudentStatistic(student);
                 }
-
+                int time = 1;
+                if(i<20) time = 3;
+                TimeUnit.SECONDS.sleep(time);
             }
         }
 
