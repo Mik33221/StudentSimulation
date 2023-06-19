@@ -4,25 +4,27 @@
 start
 :get Semester days;
 :get number of Students;
-:generate list of Students;
-:create Semester with SudentsList;
-while (current day < Semester.days)
-    while (student in StudentsList)
+:generate list of Students (all active);
+:create Semester with StudentsList;
+:set current day = 0;
+while (current day < Semester.days) is (yes)
+    while (for each student in StudentsList)
         :generate daily random event;
         :event modifies student skills;
-    endwhile
-endwhile
-while (student in StudentsList)
-    :start exam;
+    endwhile (all students)
+    :set current day++;
+endwhile (no)
+:start exam;
+while (for each student in StudentsList)
     :exam modifies student exam grades;
-    if (exam grades == 2) then (yes)
+    if (two exam grades == 2) then (yes)
         :set student state to deleted;
     endif
-endwhile
-
-while (student in StudentsList)
+endwhile (all students)
+:end ExamSession;
+while (for each student in StudentsList)
     :print user statistic;
-endwhile
+endwhile (all students)
 
 stop
 @enduml
