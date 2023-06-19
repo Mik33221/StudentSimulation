@@ -39,14 +39,14 @@ public class Semester {
         //SkillGetter skillGetter = new SkillGetter();
 
         logger.log("\n\nExams");
-        logger.log("\n\n--------------EGZAMINY--------------");
-        logger.log("studentId | Matematyka | Fizyka | IT");
-        logger.log("-------------------------------------");
+        logger.log("\n\n--------------EGZAMINY----------------");
+        logger.log("\nstudentId | Matematyka | Fizyka | IT\n");
+        logger.log("--------------------------------------\n");
         for (Student student : this.studentList) {
             Exam exam = new Exam(student.getSkillValue("Math"), student.getSkillValue("Physics"),student.getSkillValue("IT"), logger);
 
             exam.modifyStudent(student);
-            System.out.println("-------------------------------------");
+            System.out.println("--------------------------------------");
         }
 
 
@@ -56,6 +56,8 @@ public class Semester {
 
         System.out.println("\n\nSemester ended...");
         this.printStudentStateStatistics();
+
+        System.out.println("\n Scieżka dostępu do dysku tymczasowego gdzie znajdują się wyniki programu:\n"+ System.getProperty("java.io.tmpdir"));
     }
 
 

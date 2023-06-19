@@ -1,18 +1,18 @@
 package org.example;
 import java.io.*;
-import java.nio.file.*;
+import java.io.File;
 
 public class SemesterLogger {
     private String logFilePath;
 
     public SemesterLogger(String logFilePath) {
-        String userHome = System.getProperty("user.home");
-        this.logFilePath = "C:\\\\Users\\\\kbarc\\\\OneDrive\\\\Pulpit\\\\semester.log";
+        String tempDir = System.getProperty("java.io.tmpdir");
+        this.logFilePath = tempDir + File.separator + "semester.log";
     }
 
     public void log(String message) {
         // Wyświetlanie w konsoli
-        System.out.println(message);
+        System.out.print(message);
 
         // Zapis do pliku
         try {
