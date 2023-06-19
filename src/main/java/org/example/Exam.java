@@ -17,7 +17,7 @@ public class Exam implements Event {
     @Override
     public void modifyStudent(Student student) {
         int[] examGrades = new int[3];
-        //int numFailedExams = 0; Zmienna nie używana nigdzie, proponuje wprowadzić tą funkcjonalność zliczając dwóje studentów
+        int numFailedExams = 0;
 
         if (student.getHealth() > 10) {
             examGrades[0] = calGrade(mathSkillValue);
@@ -25,6 +25,15 @@ public class Exam implements Event {
             examGrades[2] = calGrade(itSkillValue);
         }
 
+        for (int grade : examGrades) {
+            if (grade < 3) {
+                numFailedExams++;
+            }
+        }
+
+        if (numFailedExams > 1) {
+            student.setState(StudentState.DELETED);
+        }
         student.setExamGrades(examGrades);
     }
 
