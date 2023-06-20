@@ -1,4 +1,6 @@
-package org.example;
+package org.example.GUI;
+
+import org.example.StudentGenerator;
 
 import javax.swing.*;
 import java.awt.*;
