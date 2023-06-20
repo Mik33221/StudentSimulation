@@ -7,15 +7,28 @@ import org.example.events.EventGenerator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
+/**
+ * Kontroluje przebieg semestru
+ *
+ */
 public class Semester {
     final int days;
     final List<Student> studentList;
 
+    /**
+     * @param days          liczba eventów która zostanie wywołana dla każdego studenta
+     * @param studentList   lista zawierająca wszystkie obiekty klasy Student
+     */
     public Semester(int days, List<Student> studentList) {
         this.days = days;
         this.studentList = studentList;
     }
 
+    /**
+     * Wywołuje wszystkie zdarzenia w semestrze i drukuje w konsoli postęp symulacji
+     * @throws InterruptedException
+     */
     public void run() throws InterruptedException {
         System.out.println("\n\nSemester begins...");
         this.printStudentStateStatistics();
@@ -65,6 +78,9 @@ public class Semester {
     }
 
 
+    /**
+     * Drukuje w konsoli histogramy ocen studentów
+     */
     private void printNotesStatistics() {
         int[] histogram = {0, 0, 0, 0};
         for (Student student : this.studentList) {
@@ -88,6 +104,11 @@ public class Semester {
         }
     }
 
+    /**
+     * Drukuje w konsoli poszczególne słupki histogramu
+     * @param note      ocena do wydrukowania w konsoli
+     * @param height    procentowa ilość studentów z daną oceną
+     */
     private void printHistogramBar(int note, int height) {
         System.out.printf("Note: %d - ", note);
         for (int i = 0; i < height; i++) {
@@ -96,6 +117,11 @@ public class Semester {
         System.out.printf(" -(%d)\n", height);
     }
 
+    /**
+     * Oblicza oceny z przedmiotów na potrzebę histogramu
+     * @param points ilość punktów z tabeli skill
+     * @return       ocena z przedmiotu
+     */
     private int calculateNote(int points) {
         if (points >= 50) {
             return 5;
@@ -108,6 +134,9 @@ public class Semester {
         }
     }
 
+    /**
+     * Drukuje w konsoli statystyki stanów studentów na podstawie ich pozostałego zdrowia
+     */
     private void printStudentStateStatistics() {
         int sumActive = 0;
         int sumNonActive = 0;
