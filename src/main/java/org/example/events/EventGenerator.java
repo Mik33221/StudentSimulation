@@ -17,7 +17,7 @@ public class EventGenerator {
         int i = 0;
 
         if (student.getHealth()<20) {           // przy zbyt małym życiu odpoczywa
-            choice = 5;
+            choice =  5;
         } else if (student.getMoney()<40) {     // przy zbyt małej ilości pieniędzy pracuje
             choice = 4;
         } else if (random < (i += pred[0])) {   // losuje akcje na podstawie sumy predyspozycji i chęci na imprezę (social)

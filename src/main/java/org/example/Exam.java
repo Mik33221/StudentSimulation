@@ -2,19 +2,34 @@ package org.example;
 
 import org.example.events.Event;
 
-
+/**
+ *   Klasa do której przekazywane są wartości umiejętności z każdego ze studiowanych przedmiotów.
+ */
 public class Exam implements Event {
+
     private int mathSkillValue;
     private int physicsSkillValue;
     private int itSkillValue;
 
     public Exam(int mathSkillValue, int physicsSkillValue, int itSkillValue) {
+        /**
+         * umiejętności matematyczne
+         */
         this.mathSkillValue = mathSkillValue;
+        /**
+         * umiejętności z fizyki
+         */
         this.physicsSkillValue = physicsSkillValue;
+        /**
+         * umiejętności IT
+         */
         this.itSkillValue = itSkillValue;
     }
 
     @Override
+    /**
+     * Wypełnia tablicę ocen studenta Ocenami z egzaminów
+     */
     public void modifyStudent(Student student) {
         int[] examGrades = new int[3];
         int numFailedExams = 0;
@@ -53,7 +68,11 @@ public class Exam implements Event {
     }
 
 
-
+    /**
+     *
+     * @param points wartosc punktów z egzaminu
+     * @return ocena z poszczególnego egzaminu
+     */
     private int calGrade(int points) {
         if (points >= 50) {
             return 5;

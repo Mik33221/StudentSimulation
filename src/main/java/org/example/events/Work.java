@@ -3,7 +3,9 @@ package org.example.events;
 import org.example.Student;
 
 import java.util.Random;
-
+/**
+ * klasa implementująca interfejs Event, zmienia jego parametry w zakesie money, health, social
+ */
 public class Work implements Event {    // dodaje pieniądze i chęć na imprezę, zabiera życie
     @Override
     public void modifyStudent(Student student) {

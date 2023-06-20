@@ -4,16 +4,28 @@ import org.example.events.EventGenerator;
 
 import java.util.List;
 
+/**
+ * Klasa Semester reprezentuje semestr studencki
+ */
 public class Semester {
     final int days;
     final List<Student> studentList;
 
-
+    /**
+     *  Obiekt Semsester aby powstać potrzebuje dostępu do długości semsestru, oraz listy studentów.
+     * @param days dni
+     * @param studentList lista studentów
+     */
     public Semester(int days, List<Student> studentList) {
         this.days = days;
         this.studentList = studentList;
     }
 
+    /**
+     * Metoda run rozpoczyna semestr studencki i zarządza jego przebiegiem, jest główną metodą w klasie.
+     * Podczas jej działania każdego dnia generowane są zdarzenia, następnie egzaminy.
+     * Metoda ta Drukuje raz na 5 dni informacje o stanie studentów jako grupy.
+     */
     public void run() {
         System.out.println("\n\nSemester begins...");
         this.printStudentStateStatistics();
@@ -58,6 +70,10 @@ public class Semester {
         System.out.println("\n\nSemester ended...");
         this.printStudentStateStatistics();
     }
+
+    /**
+     * generuje histogram ocen na podstawie Skilli studentów.
+     */
     private void printNotesStatistics() {
         int[] histogram = {0, 0, 0, 0};
         for (Student student : this.studentList) {
@@ -72,6 +88,11 @@ public class Semester {
         }
     }
 
+    /**
+     * drukuje pojedynczą belkę histogramu ocen
+     * @param note ilość kolumn
+     * @param height ilość wierszy
+     */
     private void printHistogramBar(int note, int height) {
         System.out.printf("Note: %d - ", note);
         for (int i = 0; i < height; i++) {
@@ -80,6 +101,11 @@ public class Semester {
         System.out.printf(" -(%d)\n", height);
     }
 
+    /**
+     * Oblicza ocene z egzaminu
+     * @param points ilość punktów zebranych w egzaminie=ilości skilli w danej dziedzinie
+     * @return ocena z egzaminu
+     */
     private int calculateNote(int points) {
         if (points >= 50) {
             return 5;
@@ -92,6 +118,9 @@ public class Semester {
         }
     }
 
+    /**
+     * Zlicza statystyczne dane o aktywności/nieaktywności, Zdrowiu/niskim zdrowiu
+     */
     private void printStudentStateStatistics() {
         int sumActive = 0;
         int sumNonActive = 0;
