@@ -6,6 +6,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Klasa odpowiedzialna za wybór eventów na podstawie predyspozycji studenta
+ */
 public class EventGenerator {
     // kompozycja - Event jest częscią składową klasy EventGenerator
     private final static List<Event> events = Arrays.asList(new StudyMath(), new StudyPhysics(), new StudyIT(), new Party(), new Work(), new Rest());

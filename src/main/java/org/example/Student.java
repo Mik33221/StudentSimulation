@@ -5,10 +5,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.IntStream;
 
+/**
+ * Klasa dziedzicząca po Person, dodaje obiektowi cechy charakterystyczne dla studenta
+ */
 public class Student extends Person {
+    /**
+     *  numer indeksu
+     */
     final int indexNumber;
+    /**
+     *  Status studenta
+     */
     private StudentState state;
+    /**
+     * tablica ocen
+     */
     private int[] examGrades;
+    /**
+     * mapa predyspozycji do nauki
+     */
     private final HashMap<String, Integer> predispositions; // tablica na wartości które mają wpływać na decyzje studentan, nie modyfikowane
 
     public Student(String name, String surName, int health, int money, int indexNumber,
@@ -28,7 +43,10 @@ public class Student extends Person {
     public void setState(StudentState state) {
         this.state = state;
     }
-
+    /**
+     * zwraca tablice predyspozycji
+     * @return tab
+     */
     public int[] getAllPredispositions(){
         int[] tab = {
                 this.predispositions.get("Math"),
@@ -38,14 +56,27 @@ public class Student extends Person {
         };
         return tab;
     }
+
+    /**
+     * zwraca sumę predyspozycji
+     * @return sum
+     */
     public int getSumPredispositions(){
         int[] tab = getAllPredispositions();
         int sum = IntStream.of(tab).sum();
         return sum;
     }
+
+    /**
+     * Zwraca numer indeksu
+     * @return indexNumber
+     */
     public int getIndexNumber(){
         return indexNumber;
     }
+    /**
+     * Resetuje zmienną social do wartości początkowej
+     */
     public void resetSocial(){
         this.social = this.predispositions.get("InitialSocialization");
     }
