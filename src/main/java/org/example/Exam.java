@@ -26,7 +26,7 @@ public class Exam implements Event {
 
     /**
      * Wypełnia tablicę ocen studenta ocenami z egzaminów
-     * @param student
+     * @param student Student
      */
     @Override
     public void modifyStudent(Student student) {
