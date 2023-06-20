@@ -33,7 +33,7 @@ public class SemesterWorker implements Runnable, Observable {
                 EventGenerator.generateRandomEvent(student).modifyStudent(student);
             }
 
-            popMessage(25);
+            popMessage(studentList.size()*5);
             for (Student student : this.studentList) {
                 outputStudentStatistic(student);
             }
@@ -45,7 +45,7 @@ public class SemesterWorker implements Runnable, Observable {
                 outputStudentStateStatistics(String.format("Day %d passed...", i + 1));
             }*/
         }
-        popMessage(27);
+        popMessage(studentList.size()*5);
         pushMessage("Session started...");
         flushToConsole();
 
@@ -53,8 +53,7 @@ public class SemesterWorker implements Runnable, Observable {
         examSession.run();
         runExams();
 
-        pushMessage("Semester ended");
-        flushToConsole();
+        outputStudentStateStatistics("Semester ended\n");
 
         notifyOberversFinished();
     }
@@ -84,7 +83,7 @@ public class SemesterWorker implements Runnable, Observable {
             if (student.isSuperHealthy()) { sumSuperHealthy++; }
             if (student.isNotHealthy()) { sumNotHealthy++; }
         }
-        popMessage(3);
+        //popMessage(3);
         pushMessage(title);
         pushMessage("|Active|NonActive|SuperHealthy|NonHealthy|");
         pushMessage(String.format("|%6d|%9d|%12d|%10d|", sumActive, sumNonActive, sumSuperHealthy, sumNotHealthy));
@@ -126,7 +125,7 @@ public class SemesterWorker implements Runnable, Observable {
     public void notifyOberversFinished() {
         this.observers.forEach(observer -> observer.finished());
     }
-    public void runExams(){
+    public void runExams(){    //Wyświetla egzaminy w GUI
         pushMessage("\n--------------EGZAMINY--------------");
         pushMessage("studentId | Matematyka | Fizyka | IT");
         pushMessage("-------------------------------------");
