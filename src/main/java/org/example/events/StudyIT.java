@@ -3,7 +3,9 @@ package org.example.events;
 import org.example.Student;
 
 import java.util.Random;
-
+/**
+ * Zwiększa skille w hashmapie z klasy Person w zakresie IT
+ */
 public class StudyIT extends Study {    // dodaje punkty w informatyce i chęć na imprezę, zmniejsza pieniądze
     @Override
     public void modifyStudent(Student student) {
