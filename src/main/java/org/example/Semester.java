@@ -9,15 +9,14 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
- * Kontroluje przebieg semestru
- *
+ * Reprezentuje semestr, kontroluje jego przebieg
  */
 public class Semester {
     final int days;
     final List<Student> studentList;
 
     /**
-     * @param days          liczba eventów która zostanie wywołana dla każdego studenta
+     * @param days          długość semestru - liczba eventów która zostanie wywołana dla każdego studenta
      * @param studentList   lista zawierająca wszystkie obiekty klasy Student
      */
     public Semester(int days, List<Student> studentList) {
@@ -27,6 +26,8 @@ public class Semester {
 
     /**
      * Wywołuje wszystkie zdarzenia w semestrze i drukuje w konsoli postęp symulacji
+     * Podczas jej działania każdego dnia generowane są zdarzenia, następnie egzaminy.
+     * Metoda ta Drukuje raz na 5 dni informacje o stanie studentów jako grupy.
      * @throws InterruptedException
      */
     public void run() throws InterruptedException {
@@ -105,7 +106,7 @@ public class Semester {
     }
 
     /**
-     * Drukuje w konsoli poszczególne słupki histogramu
+     * Drukuje w konsoli pojedyńczą belkę histogramu
      * @param note      ocena do wydrukowania w konsoli
      * @param height    procentowa ilość studentów z daną oceną
      */
@@ -118,7 +119,7 @@ public class Semester {
     }
 
     /**
-     * Oblicza oceny z przedmiotów na potrzebę histogramu
+     * Oblicza oceny z egzaminów na potrzebę histogramu
      * @param points ilość punktów z tabeli skill
      * @return       ocena z przedmiotu
      */
@@ -135,7 +136,7 @@ public class Semester {
     }
 
     /**
-     * Drukuje w konsoli statystyki stanów studentów na podstawie ich pozostałego zdrowia
+     * Drukuje w konsoli dane statystyczne o aktywności/nieaktywności, wysokim/niskim zdrowiu studentów
      */
     private void printStudentStateStatistics() {
         int sumActive = 0;
