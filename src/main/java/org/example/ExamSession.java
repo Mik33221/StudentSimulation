@@ -3,6 +3,9 @@ package org.example;
 import java.util.List;
 
 
+/**
+ * Kontroluje przebieg sesji egzaminacyjnej
+ */
 public class ExamSession {
     final List<Student> studentList;
 

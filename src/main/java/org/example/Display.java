@@ -1,5 +1,8 @@
 package org.example;
 
+/**
+ * Zbiór funkcji przydatnych do wyświetlania w konsoli InteliJ
+ */
 public class Display {
     public static void clearScreen() {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");

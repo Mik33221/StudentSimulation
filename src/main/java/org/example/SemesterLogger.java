@@ -2,6 +2,9 @@ package org.example;
 import java.io.*;
 import java.io.File;
 
+/**
+ * Zapis wyniku symulacji do folderu temp
+ */
 public class SemesterLogger {
     private static String logFilePath = System.getProperty("java.io.tmpdir") + '/' + "semester.log";
 
