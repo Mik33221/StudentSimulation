@@ -29,9 +29,6 @@ public class Student extends Person {
         this.state = state;
     }
 
-    public int getPredisposition(String pred){
-        return this.predispositions.get(pred);
-    }
     public int[] getAllPredispositions(){
         int[] tab = {
                 this.predispositions.get("Math"),
@@ -45,6 +42,9 @@ public class Student extends Person {
         int[] tab = getAllPredispositions();
         int sum = IntStream.of(tab).sum();
         return sum;
+    }
+    public int getIndexNumber(){
+        return indexNumber;
     }
     public void resetSocial(){
         this.social = this.predispositions.get("InitialSocialization");
