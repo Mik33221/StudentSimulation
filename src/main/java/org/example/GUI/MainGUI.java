@@ -50,6 +50,8 @@ public class MainGUI implements ActionListener, Observer {
         consoleArea.setVisible(true);
         this.consoleArea = consoleArea;
 
+        JScrollPane scroll = new JScrollPane(consoleArea);
+
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(numberStudentsLabel);
         panel.add(numberStudents);
@@ -57,7 +59,7 @@ public class MainGUI implements ActionListener, Observer {
         panel.add(semesterDays);
         panel.add(simulateButton, BorderLayout.LINE_END);
         panel.add(Box.createVerticalStrut(40));
-        panel.add(consoleArea, BorderLayout.PAGE_END);
+        panel.add(scroll, BorderLayout.PAGE_END);
         this.panel = panel;
 
         JFrame frame = new JFrame("Students' Lives Simulation");
