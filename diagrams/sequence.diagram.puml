@@ -11,30 +11,30 @@ Actor --> Main: semesterDays: int
 Main -> Actor: getNumberOfStudents(): int
 Actor --> Main: numberOfStudents: int
 
+participant StudentGenerator
+
+Main -> StudentGenerator: createRandomStudent(numberOfStudents))
+StudentGenerator --> Main: studentList
+
 create Semester
-Main -> Semester: new
-
-Main -> Semester: printStudentStateList()
-Semester -> Main
-
+Main -> Semester: new (studentList)
 Main -> Semester: run()
+Semester -> Semester: printStudentStateList()
 
-loop every Student
+loop every student, every day
 
-  Semester -> EventGenerator: generateRandomEvent()
+  Semester -> EventGenerator: generateRandomEvent(student)
   create Event
-  EventGenerator --> Event: new
+  EventGenerator -> Event: new
   EventGenerator --> Semester: event: Event
 
-  Semester --> Event: modifyStudent(student: Student)
+  Semester -> Event: modifyStudent(student: Student)
   Event --> Semester
 
 end
 
-Semester -> Main
-
-Main -> Semester: printStudentStateList()
-Semester -> Main
+Semester -> Semester: printStudentStateList()
+Semester --> Main
 
 Main -> Semester !!
 
