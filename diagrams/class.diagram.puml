@@ -10,14 +10,22 @@ class Semester {
 + printStudentStateList(): void
 }
 
-Semester ..> Student
+Semester o-- Student
 Semester ..> EventGenerator
+Semester ..> ExamSession
 
 
 class Student extends Person {
 - indexNumber: int
 - state: StudentState
-+ toString(): String
+- examGrades: int[]
+- predispositions: HashMap<String, Integer>
++ getAllPredispositions(): int[]
++ setState(state: StudentState): void
++ getState(): StudentState
++ getIndexNumber(): int
++ setExamGrades(examGrades: int): void
++ getExamGrades(): int
 }
 
 
@@ -25,14 +33,24 @@ class Person {
 # name: String
 # surName: String
 # health: int
+# money: int
+# social: int
 - skills: HashMap<String,Integer>
 + getName(): String
 + getSurName(): String
 + getHealth(): int
++ getMoney(): int
++ getSocial(): int
++ resetSocial(): void
 + increaseHealth(value: int): void
 + decreaseHealth(value: int): void
++ increaseMoney(value: int): void
++ decreaseMoney(value: int): void
++ increaseSocial(value: int): void
++ decreaseSocial(value: int): void
 + increaseSkills(skill: String): void
-+ toString(): String
++ getSkillValue(skill: String): int
++ getAllSkills(): keySet
 + getSkillsAsString(): String
 }
 
@@ -71,6 +89,12 @@ class StudyMath implements Event {
 
 class StudyPhysics implements Event {
 + modifyStudent(student: Student): void
+}
+
+class ExamSession{
+- studentList: List<Student>
++ run(): void
+- printAndSafe(text: String): void
 }
 
 @enduml
