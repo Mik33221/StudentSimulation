@@ -16,7 +16,7 @@ public class ExamResultsPrinter {
         String logMessage = String.format("%9d | %10d | %7d | %3d\n",
                 studentId, examGrades[0], examGrades[1], examGrades[2]);
         //System.out.println(logMessage);  // Wyświetlenie logu w konsoli
-        SemesterLogger.log(logMessage);  // Zapis logu do pliku tekstowego
+        //SemesterLogger.log(logMessage);  // Zapis logu do pliku tekstowego
     }
 }
 
